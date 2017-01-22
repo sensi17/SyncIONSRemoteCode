@@ -1,0 +1,72 @@
+﻿<Window x:Class="SyncIONetSealRemoteCode.Windows.winMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SyncIONetSealRemoteCode.Windows"
+        mc:Ignorable="d"
+        Title="SybcIO NS Remote Code" Height="172.881" Width="367.373">
+
+    <Window.Resources>
+        <ContextMenu x:Key="cmCallName">
+            <MenuItem Header="Copy"/>
+        </ContextMenu>
+    </Window.Resources>
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+
+        <StackPanel Orientation="Horizontal">
+            <Menu>
+                <MenuItem Header="Settings" >
+                    <MenuItem Header="Network" x:Name="miNetworking" Click="miNetworking_Click"/>
+                    <MenuItem Header="Emergency">
+                        <MenuItem Header="Block all function calls" />
+                    </MenuItem>
+                </MenuItem>
+                
+            </Menu>
+
+        </StackPanel>
+
+        <ListView x:Name="lvFunctions" SelectionMode="Single" Grid.ColumnSpan="2" Grid.Row="1">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn Header="Application" DisplayMemberBinding="{Binding ApplicationID}" />
+                    <GridViewColumn Header="Call Name" Width="100">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate >
+                                <TextBox Text="{Binding FunctionName, Mode=OneWay}" IsReadOnly="True" ContextMenu="{StaticResource cmCallName}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn  Width="100" Header="Description" DisplayMemberBinding="{Binding FunctionDescription}" />
+                    <GridViewColumn  Width="100" Header="Sig" DisplayMemberBinding="{Binding FunctionSig}" />
+                </GridView>
+            </ListView.View>
+
+        </ListView>
+
+
+
+        <StackPanel Grid.Row="2" Orientation="Horizontal" Grid.ColumnSpan="2">
+            <Label Content="Status:" FontWeight="Bold"/>
+            <Label Content="Idle" x:Name="lblStatus" />
+        </StackPanel>
+
+
+
+    </Grid>
+</Window>
