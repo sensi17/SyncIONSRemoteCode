@@ -16,7 +16,7 @@ namespace ExampleApplication {
 
         static void Main(string[] args) {
 
-            var appID = "D6780000";
+            var appID = "00000000";
 
             var netseal = new Broker();
             netseal.Initialize(appID);
