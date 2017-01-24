@@ -33,18 +33,12 @@ namespace SyncIONetSealRemoteCode.Windows {
         public winMain() {
             InitializeComponent();
 
-           
-
             server = new SyncIOServer(SyncIO.Transport.TransportProtocal.IPv4, RemoteConfig.GetPackager());
 
             server.SetHandler<HandshakePacket>((client, packet) => {
                 var nsClientInfo = new NSClient(packet.Username, packet.AppID);
                 client.Tag = nsClientInfo;
                 client.Send(new HandshakeResponsePacket(true));
-            });
-
-            server.SetHandler((SyncIOConnectedClient client, object[] p) => {
-                client.Send(p);
             });
 
             server.SetDefaultRemoteFunctionAuthCallback((client, func) => {

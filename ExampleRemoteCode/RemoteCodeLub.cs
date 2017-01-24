@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace ExampleRemoteCode {
-    [RemoteApp("App ID", "Remote API Token")]
+    [RemoteApp("00000000", "Remote API Token")]
     public class RemoteCodeLub {
 
         [RemoteFunction("Reverse", "Reverses a given string")]

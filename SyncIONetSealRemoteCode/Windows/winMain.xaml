@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SyncIONetSealRemoteCode.Windows"
         mc:Ignorable="d"
-        Title="SybcIO NS Remote Code" Height="172.881" Width="367.373">
+        Title="SyncIO NS Remote Code" Height="172.881" Width="367.373">
 
     <Window.Resources>
         <ContextMenu x:Key="cmCallName">
