@@ -31,19 +31,22 @@ namespace SIORemoteCode {
 
             client.OnDisconnect += (c, e) => OnDisconnect?.Invoke();
             client.SetHandler<HandshakeResponsePacket>((c, p) => OnConnect?.Invoke());
+
+            client.OnHandshake += (c, id, succ) => {
+                if (!succ)
+                    OnConnect?.Invoke();
+                else
+                    c.Send(new HandshakePacket(Username, AppID));
+            };
         }
 
 
-        public void Init(string IP, int Port) {
+        public bool Init(string IP, int Port) {
             if (client.Connect(IP, Port)) {
-                client.OnHandshake += (c, id , succ) => {
-                    if(!succ)
-                        OnConnect?.Invoke();
-                    else
-                        c.Send(new HandshakePacket(Username, AppID));
-                };
+                return true;
             } else {
                 OnConnect?.Invoke();
+                return false;
             }
                
         }
